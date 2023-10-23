@@ -1,11 +1,11 @@
-const Countries = ({ }) => { 
+const Home = ({ }) => {
     return (
         <div>
             <h2 className="text-center">
-            Countries Index Page
+            Home Page
             </h2>
         </div>
     )
 }
 
-export default Countries
+export default Home;
