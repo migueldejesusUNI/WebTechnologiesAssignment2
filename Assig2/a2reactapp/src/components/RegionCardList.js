@@ -21,7 +21,7 @@ const RegionCardList = ({ }) => {
                     regionId={obj.regionId}
                     regionName={obj.regionName}
                     imageUrl={obj.imageUrl}
-
+                    countryCount={obj.countryCount }
                 />
             )
             )
