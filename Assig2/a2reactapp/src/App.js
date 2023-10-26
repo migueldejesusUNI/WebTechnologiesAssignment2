@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
 
 function App() {
   return (
@@ -20,6 +19,7 @@ function App() {
                   </div>
               </div>
           </nav> 
+          
       </div>
   );
 }

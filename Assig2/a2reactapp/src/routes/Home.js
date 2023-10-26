@@ -2,7 +2,7 @@ const Home = ({ }) => {
     return (
         <div>
             <h2 className="text-center">
-            Home Page
+            Home Page Index
             </h2>
         </div>
     )
