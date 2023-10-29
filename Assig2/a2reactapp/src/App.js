@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import './App.css'
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
                   </div>
               </div>
           </nav> 
-          
+          <Outlet />
       </div>
   );
 }

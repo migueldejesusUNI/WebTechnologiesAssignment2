@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import CountryCard from "./CountryCard"
+import { Link, useParams } from "react-router-dom";
 
 const CountryCardList = ({ }) => {
+    let params = useParams();
+
     const [cardData, setState] = useState([]);
-    const [regionId] = useState(0);
+    const [regionId, setRegionId] = useState(params.regionId);
     useEffect(() => {
         console.log("useEffect");
         fetch(`http://localhost:5256/api/B_Countries/CountryList/${regionId}`)
