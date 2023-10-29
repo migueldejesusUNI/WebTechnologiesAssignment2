@@ -16,7 +16,10 @@ root.render(
             <Routes>
                 <Route path="Home" element={<Home /> } />
                 <Route path="Regions" element={<Regions />} />
-                <Route path="Countries/:regionId" element={<Countries /> } />
+                <Route path="Countries/:regionId" element={<Countries />} />
+                <Route path="Countries" element={<Countries /> } />
+                <Route path="" element={<Home />} /> {/*route for when the url is localhost:[port] */ }
+                <Route path="*" element={<Home />} /> {/*route that matches anything */ }
             </Routes>
         </BrowserRouter>
   </React.StrictMode>
