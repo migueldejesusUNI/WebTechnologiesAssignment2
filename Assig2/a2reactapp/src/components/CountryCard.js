@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 const CountryCard = ({ countryId, countryName, iso3, imageUrl, cityCount, emissionDataYearRange, temperatureDataYearRange }) => {
     return (
-        <div className="card col-4 mb-2" style={{ width: 18 + 'rem' }}>
+        <div className="card col-4 mb-2" key={countryId}  style={{ width: 18 + 'rem' }}>
             <img className="card-img-top" src={imageUrl} alt={"Photo of " + countryName} />
             <div className="card-body">
                 <h4 className="card-title">{countryName}</h4>

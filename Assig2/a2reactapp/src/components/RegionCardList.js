@@ -18,6 +18,7 @@ const RegionCardList = ({ }) => {
         <div className="row justify-content-center">
             {cardData.map((obj) => (
                 <RegionCard
+                    
                     regionId={obj.regionId}
                     regionName={obj.regionName}
                     imageUrl={obj.imageUrl}
