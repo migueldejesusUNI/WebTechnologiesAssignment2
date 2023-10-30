@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './routes/Home';
 import Regions from './routes/Regions';
 import Countries from './routes/Countries';
+import Cities from './routes/Cities';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,7 +18,8 @@ root.render(
                 <Route path="Home" element={<Home /> } />
                 <Route path="Regions" element={<Regions />} />
                 <Route path="Countries/:regionId" element={<Countries />} />
-                <Route path="Countries" element={<Countries /> } />
+                <Route path="Countries" element={<Countries />} />
+                <Route path="Cities/:countryId" element={<Cities /> } />
                 <Route path="" element={<Home />} /> {/*route for when the url is localhost:[port] */ }
                 <Route path="*" element={<Home />} /> {/*route that matches anything */ }
             </Routes>

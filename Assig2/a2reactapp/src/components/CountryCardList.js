@@ -7,6 +7,7 @@ const CountryCardList = ({ }) => {
 
     const [cardData, setState] = useState([]);
     const [regionId, setRegionId] = useState(params.regionId);
+
     useEffect(() => {
         console.log("useEffect");
         fetch(`http://localhost:5256/api/B_Countries/CountryList/${regionId}`)
@@ -28,7 +29,7 @@ const CountryCardList = ({ }) => {
                     cityCount={obj.cityCount}
                 />
             ))}
-
+            
         </div>
     )
 }
