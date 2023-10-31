@@ -5,9 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './routes/Home';
-import Regions from './routes/Regions';
-import Countries from './routes/Countries';
-import Cities from './routes/Cities';
+import RegionCardList from './components/RegionCardList';
+import CountryCardList from './components/CountryCardList';
+import CityCardList from './components/CityCardList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,10 +16,10 @@ root.render(
             <App />
             <Routes>
                 <Route path="Home" element={<Home /> } />
-                <Route path="Regions" element={<Regions />} />
-                <Route path="Countries/:regionId" element={<Countries />} />
-                <Route path="Countries" element={<Countries />} />
-                <Route path="Cities/:countryId" element={<Cities /> } />
+                <Route path="Regions" element={<RegionCardList />} />
+                <Route path="Countries/:regionId" element={<CountryCardList />} />
+                <Route path="Countries" element={<CountryCardList />} />
+                <Route path="Cities/:countryId" element={<CityCardList /> } />
                 <Route path="" element={<Home />} /> {/*route for when the url is localhost:[port] */ }
                 <Route path="*" element={<Home />} /> {/*route that matches anything */ }
             </Routes>
