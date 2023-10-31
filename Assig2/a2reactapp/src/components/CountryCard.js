@@ -7,6 +7,8 @@ const CountryCard = ({ countryId, countryName, iso3, imageUrl, cityCount, emissi
                 <h4 className="card-title">{countryName}</h4>
                 <h5 className="card-text">{iso3}</h5>
                 <h6 className="card-text">Number of cities in {countryName}:  {cityCount}</h6>
+                <p>Contains emission records from {emissionDataYearRange[0]} to {emissionDataYearRange[1]} </p>
+                <p>Contains temperature records from {temperatureDataYearRange[0]} to {temperatureDataYearRange[1]}</p>
                 <Link to={"/Cities/" + countryId} className="btn btn-primary">Visit Cities {countryId} </ Link >
             </div>
         </div>

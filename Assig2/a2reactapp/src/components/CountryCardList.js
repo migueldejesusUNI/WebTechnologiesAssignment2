@@ -27,7 +27,8 @@ const CountryCardList = ({ }) => {
                     iso3={obj.iso3}
                     imageUrl={obj.imageUrl}
                     cityCount={obj.cityCount}
-                    
+                    emissionDataYearRange={obj.emissionDataYearRange}
+                    temperatureDataYearRange={obj.temperatureDataYearRange}
                 />
             ))}
             
