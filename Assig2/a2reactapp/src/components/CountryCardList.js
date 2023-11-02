@@ -28,15 +28,18 @@ const CountryCardList = ({ }) => {
         <div>
             <h2>Countries</h2>
 
-            <div className="row justify-content-start mb-3">
-                <div className="col-3">
+            <div className="row justify-content-center mb-3">
+                <div className="row col-3 text-center">
                     <input type="text" name="searchText" className="form-control" placeholder="Search for countries" />
                 </div>
-                <div className="col text-left">
+                <div className="row col-3 text-left">
                     <button type="button" className="btn btn-primary" onClick={searchQuery}>Search</button>
                 </div>
             </div>
-
+            <div className="row justify-content-center mb-3">
+                <Link to={"/Regions"} className="btn btn-primary">Back To Regions</ Link >
+            </div>
+            <hr />
             {!cardData.countryList?.length == 0 ? (
                 <div id="cardList" className="row justify-content-center">
                     {cardData.countryList?.map((obj) => (

@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import RegionCard from "./RegionCard";
 
+
 const RegionCardList = ({ }) => {
 
     const [cardData, setState] = useState([]);
@@ -18,14 +19,14 @@ const RegionCardList = ({ }) => {
         <div className="row justify-content-center">
 
             <h2>All Regions </h2>
-            {cardData.map((obj) => (
-                <RegionCard
-                    
+            {cardData.map((obj) => (              
+                <RegionCard                    
                     regionId={obj.regionId}
                     regionName={obj.regionName}
                     imageUrl={obj.imageUrl}
                     countryCount={obj.countryCount }
-                />
+
+                />           
             )
             )
             }
