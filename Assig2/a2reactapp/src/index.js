@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './routes/Home';
 import RegionCardList from './components/RegionCardList';
 import CountryCardList from './components/CountryCardList';
 import CityCardList from './components/CityCardList';
@@ -15,13 +14,12 @@ root.render(
         <BrowserRouter>
             <App />
             <Routes>
-                <Route path="Home" element={<Home /> } />
                 <Route path="Regions" element={<RegionCardList />} />
                 <Route path="Countries/:regionId" element={<CountryCardList />} />
                 <Route path="Countries" element={<CountryCardList />} />
-                <Route path="Cities/:countryId" element={<CityCardList /> } />
-                <Route path="" element={<Home />} /> {/*route for when the url is localhost:[port] */ }
-                <Route path="*" element={<Home />} /> {/*route that matches anything */ }
+                <Route path="Cities/:countryId" element={<CityCardList />} />
+                <Route path="" element={<RegionCardList />} /> {/*route for when the url is localhost:[port] */}
+                <Route path="*" element={<RegionCardList />} /> {/*route that matches anything */ }
             </Routes>
         </BrowserRouter>
   </React.StrictMode>
