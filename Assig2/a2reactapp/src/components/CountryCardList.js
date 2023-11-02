@@ -51,15 +51,7 @@ const CountryCardList = ({ }) => {
                         />
                     ))}
                 </div>
-
-            ) : 
-                ( 
-                    <h2>No countries found</h2>
-        )}
-                
-
-            
-
+            ) :  (<h2>No countries found</h2>)}
         </div>
     )
     
