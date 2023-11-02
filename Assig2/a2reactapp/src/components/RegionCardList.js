@@ -4,12 +4,12 @@ import RegionCard from "./RegionCard";
 
 const RegionCardList = ({ }) => {
 
-    const [cardData, setState] = useState([]);
+    const [cardData, setcardData] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:5256/api/A_Regions")
             .then(response => response.json())
-            .then(data => setState(data))
+            .then(data => setcardData(data))
             .catch(err => {
                 console.log(err);
             });

@@ -40,8 +40,4 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="a2reactapp\src\routes\" />
-  </ItemGroup>
-
 </Project>
