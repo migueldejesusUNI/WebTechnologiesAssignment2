@@ -54,7 +54,9 @@ const CountryCardList = ({ }) => {
                             emissionDataYearRange={obj.emissionDataYearRange}
                             temperatureDataYearRange={obj.temperatureDataYearRange}
                         />
-                    ))}
+                    )
+                    )
+                    }
                 </div>
             ) :  (<h2>No countries found</h2>)}
         </div>
