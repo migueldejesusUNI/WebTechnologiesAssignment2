@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
-import TemperatureCard from "../components/TemperatureCard"
 import '../customcards.css'
 
 
@@ -36,19 +35,37 @@ const CountryTemperatureDetail = ({ }) => {
             <p>Earliest Year: {tempData.minYear}</p>
             <p>Latest Year: {tempData.maxYear}</p>
 
+            
+
             {!tempData.rawTemperatureData?.length == 0 ? (
-                <div className="row justify-content-center mb-3 col-20">
-                    {tempData.rawTemperatureData?.map((obj) => (
-                        <TemperatureCard
-                            year={obj.theCountryTempData.year}
-                            unit={obj.theCountryTempData.unit}
-                            change={obj.theCountryTempData.change}
-                            value={obj.theCountryTempData.value}
-                            regionalAvg={obj.regionalAvg}
-                            regionalMin={obj.regionalMin}
-                            regionalMax={obj.regionalMax}
-                        />
-                    ))}
+                <div className="row justify-content-center">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Unit</th>
+                                <th>Change</th>
+                                <th>Value</th>
+                                <th>RegionalAvg</th>
+                                <th>RegionalMin</th>
+                                <th>RegionalMax</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {tempData.rawTemperatureData?.map((obj) => (
+                            
+                            <tr>
+                                <td>{obj.theCountryTempData.year}</td>
+                                <td>{obj.theCountryTempData.unit}</td>
+                                <td>{obj.theCountryTempData.change}</td>
+                                <td>{obj.theCountryTempData.value}</td>
+                                <td>{obj.regionalAvg}</td>
+                                <td>{obj.regionalMin}</td>
+                                <td>{obj.regionalMax}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
                 </div>
             ) : (<h2>No data found</h2>)}
             
