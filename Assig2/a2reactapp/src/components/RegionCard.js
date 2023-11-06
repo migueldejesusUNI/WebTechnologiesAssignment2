@@ -11,7 +11,7 @@ const RegionCard = ({ regionId, regionName, imageUrl, countryCount }) => {
                 <h5 className="card-text">Number of countries: {countryCount}</h5>
                 <hr />
                 <div className="btn-container">
-                    <Link to={"/Countries/" + regionId} className="btn btn-primary">Visit Countries</Link>
+                    <Link to={"/Countries/" + regionId} className="stretched-link"></Link>
                 </div>
             </div>
         </div>

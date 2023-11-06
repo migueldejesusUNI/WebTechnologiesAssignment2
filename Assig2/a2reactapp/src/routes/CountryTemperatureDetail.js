@@ -28,7 +28,12 @@ const CountryTemperatureDetail = ({ }) => {
             <p>
                 Country ID: {countryId}
             </p>
-            <p>{tempData.minYear}</p>
+            <p>Earliest Year: {tempData.minYear}</p>
+            <p>Latest Year: {tempData.maxYear}</p>
+            <div className="row justify-content-center">
+                
+            </div>
+            
         </div>
     )
 }
