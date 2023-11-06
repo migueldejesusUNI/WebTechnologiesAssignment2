@@ -26,7 +26,9 @@ const CountryCardList = ({ }) => {
     
     return (
         <div>
-            <h2>Countries</h2>
+            <div class="text-white bg-gradient bg-success p-2 my-2 border rounded" >
+                <h2>Countries</h2>
+            </div>
 
             <div className="row justify-content-center mb-3">
                 <div className="row col-3 text-center">
@@ -41,7 +43,7 @@ const CountryCardList = ({ }) => {
             </div>
             <hr />
             {!cardData.countryList?.length == 0 ? (
-                <div id="cardList" className="row justify-content-center">
+                <div id="cardList" className="row justify-content-center mb-3 col-20">
                     {cardData.countryList?.map((obj) => (
                         <CountryCard
                             countryId={obj.countryId}

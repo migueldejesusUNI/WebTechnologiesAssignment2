@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import '../App.css'
+import '../customcards.css'
 
 const RegionCard = ({ regionId, regionName, imageUrl, countryCount }) => {
     return (
-        <div className="card col-4 mb-2" key={regionId}  style={{ width: 18 + 'rem' }}>
-            <img className="card-img-top" src={imageUrl} alt={"Photo of " + regionName} />
+        <div id="indexCards" className="card col-4 mb-2" key={regionId}  style={{ width: 18 + 'rem' }}>
+            <img className="card-img-top" src={imageUrl != "" ? imageUrl : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/The_Blue_Marble_%28remastered%29.jpg/330px-The_Blue_Marble_%28remastered%29.jpg"}  alt={"Photo of " + regionName} />
             <div className="card-body">
                 <h4 className="card-title">{regionName}</h4>
                 <hr /> 

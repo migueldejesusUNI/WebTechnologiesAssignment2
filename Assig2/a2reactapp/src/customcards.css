@@ -1,0 +1,36 @@
+﻿body {
+    margin-bottom: 60px;
+    background-image: linear-gradient(lightblue, lightgreen);
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+.btn-container {
+    text-align: center
+}
+
+#indexCards {
+    background-color: floralwhite;
+}
+
+#indexCards:hover {
+    background-color: darkgreen;
+    color: white;
+}
+
+.btn-primary {
+    text-align: center;
+    width: 100%;
+    transition-duration: 0.3s;
+    background-color: dodgerblue;
+    border-radius: 12px;
+    
+}
+
+.btn-primary:hover {
+    background-color: darkblue;
+    color: white;
+}

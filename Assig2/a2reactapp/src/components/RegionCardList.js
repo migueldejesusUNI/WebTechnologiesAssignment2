@@ -16,7 +16,7 @@ const RegionCardList = ({ }) => {
 
     }, [])
     return (
-        <div className="row justify-content-center">
+        <div className="row justify-content-center mb-1 col-15">
 
             <h2>All Regions </h2>
             {cardData.map((obj) => (              
