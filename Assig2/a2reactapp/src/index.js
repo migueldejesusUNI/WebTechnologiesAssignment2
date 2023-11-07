@@ -8,6 +8,7 @@ import RegionCardList from './components/RegionCardList';
 import CountryCardList from './components/CountryCardList';
 import CityCardList from './components/CityCardList';
 import CountryTemperatureDetail from './routes/CountryTemperatureDetail';
+import SummaryCountryEmissionData from './routes/SummaryCountryEmissionData'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,7 +20,8 @@ root.render(
                 <Route path="Countries/:regionId" element={<CountryCardList />} />
                 <Route path="Countries" element={<CountryCardList />} />
                 <Route path="Cities/:countryId" element={<CityCardList />} />
-                <Route path="CountryTemperatureDetail/:countryId" element={<CountryTemperatureDetail /> } />
+                <Route path="CountryTemperatureDetail/:countryId" element={<CountryTemperatureDetail />} />
+                <Route path="SummaryCountryEmissionData/:countryId" element={<SummaryCountryEmissionData /> } /> 
                 <Route path="" element={<RegionCardList />} /> {/*route for when the url is localhost:[port] */}
                 <Route path="*" element={<RegionCardList />} /> {/*route that matches anything */ }
             </Routes>
