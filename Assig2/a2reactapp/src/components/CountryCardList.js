@@ -26,7 +26,7 @@ const CountryCardList = ({ }) => {
     
     return (
         <div>
-            <div class="text-white bg-gradient bg-success p-2 my-2 border rounded" >
+            <div className="text-white bg-gradient bg-success p-2 my-2 border rounded" >
                 <h2>Countries</h2>
 
             </div>

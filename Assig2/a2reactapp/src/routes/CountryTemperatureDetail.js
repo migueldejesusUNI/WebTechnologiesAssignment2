@@ -12,6 +12,7 @@ const CountryTemperatureDetail = ({ }) => {
     const [countryId, setCountryId] = useState(params.countryId)
     const [regionId, setRegionId] = useState(params.regionId)
     
+   
  
 
     useEffect(() => {
@@ -22,34 +23,39 @@ const CountryTemperatureDetail = ({ }) => {
             .catch(err => {
                 console.log(err);
             })
-    }, [countryId])
 
-    useEffect (() => {
         fetch(`http://localhost:5256/api/B_Countries/CountryList/${regionId}`)
             .then(response => response.json())
             .then(data => setcountryData(data))
             .catch(err => {
                 console.log(err)
             })
+
         
-    }, [regionId])
+    }, [countryId, regionId])
 
+    console.log(countryData.countryList && countryData.countryList.length > 0 ? countryData.countryList[2] : "Element not found");
 
     
-    
+  
     return (
         <div>
-            <div class="text-white bg-gradient bg-success p-2 my-2 border rounded" >
-                <h2 className="text-center">
-                    Country Temperature
-                </h2>
+            <div className="text-white bg-gradient bg-success p-2 my-2 border rounded" >
+                <h1 className="text-center">
+                    Country Temperature 
+                </h1>
             </div>
             <hr />
             <Link to={"/Countries/" + regionId} className="btn btn-primary mb-1">Back to Country List</Link>
             <hr />
-            <div className="card">
-                <div class="container">
-                    <h3>{countryData.regionName}</h3>
+            <div className="card col-6 mb-2 mx-auto" >
+                <img className="card-img-top" src={countryData.countryList?.find(c => c.countryId == countryId).imageUrl } />
+                <div className="card-body text-white bg-gradient bg-primary p-2 my-2 border rounded">
+                    <h2>{countryData.countryList?.find(c => c.countryId == countryId).countryName}</h2>
+                    <h3>{countryData.theRegion?.regionName}</h3>
+                </div>
+                <div>
+                    
                     <h4>Showing temperature records from {tempData.minYear} to {tempData.maxYear}</h4>
                     
                 </div>
