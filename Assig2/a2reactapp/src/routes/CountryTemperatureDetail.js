@@ -8,7 +8,10 @@ const CountryTemperatureDetail = ({ }) => {
     let params = useParams();
 
     const [tempData, settempData] = useState({ });
+    const [countryData, setcountryData] = useState({ });
     const [countryId, setCountryId] = useState(params.countryId)
+    const [regionId, setRegionId] = useState(params.regionId)
+    
  
 
     useEffect(() => {
@@ -21,6 +24,18 @@ const CountryTemperatureDetail = ({ }) => {
             })
     }, [countryId])
 
+    useEffect (() => {
+        fetch(`http://localhost:5256/api/B_Countries/CountryList/${regionId}`)
+            .then(response => response.json())
+            .then(data => setcountryData(data))
+            .catch(err => {
+                console.log(err)
+            })
+        
+    }, [regionId])
+
+
+    
     
     return (
         <div>
@@ -30,8 +45,15 @@ const CountryTemperatureDetail = ({ }) => {
                 </h2>
             </div>
             <hr />
-            <Link to={"/Countries/0"} className="btn btn-primary mb-1">Back to Country List</Link>
+            <Link to={"/Countries/" + regionId} className="btn btn-primary mb-1">Back to Country List</Link>
             <hr />
+            <div className="card">
+                <div class="container">
+                    <h3>{countryData.regionName}</h3>
+                    <h4>Showing temperature records from {tempData.minYear} to {tempData.maxYear}</h4>
+                    
+                </div>
+            </div>
             {!tempData.rawTemperatureData?.length == 0 ? (
                 <div className="row justify-content-center" >
                     <div className="table-responsive">    
