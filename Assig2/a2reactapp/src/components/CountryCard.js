@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom"
 import '../customcards.css'
-const CountryCard = ({ countryId, countryName, iso3, imageUrl, cityCount, emissionDataYearRange, temperatureDataYearRange }) => {
+const CountryCard = ({ regionName, countryId, countryName, iso3, imageUrl, cityCount, emissionDataYearRange, temperatureDataYearRange }) => {
     return (
         <div id="indexCards" className="card col-4 mb-2" key={countryId}  style={{ width: 18 + 'rem' }}>
             <img className="card-img-top" src={imageUrl} alt={"Photo of " + countryName} />
             <div className="card-body">
                 <h4 className="card-title">{countryName}</h4>
                 <h5 className="card-text">{iso3}</h5>
+                <h5 className="card-text">Region: {regionName}</h5>
                 <hr />
                 <h6 className="card-text">{cityCount != 0 ? `Number of cities in ${countryName}:  ${cityCount}` : "No cities available"}</h6>
                 <hr /> 

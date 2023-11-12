@@ -46,6 +46,7 @@ const CountryCardList = ({ }) => {
                 <div id="cardList" className="row justify-content-center mb-3 col-20">
                     {cardData.countryList?.map((obj) => (
                         <CountryCard
+                            regionName={cardData.theRegion.regionName}
                             countryId={obj.countryId}
                             countryName={obj.countryName}
                             iso3={obj.iso3}
@@ -53,6 +54,7 @@ const CountryCardList = ({ }) => {
                             cityCount={obj.cityCount}
                             emissionDataYearRange={obj.emissionDataYearRange}
                             temperatureDataYearRange={obj.temperatureDataYearRange}
+
                         />
                     )
                     )
