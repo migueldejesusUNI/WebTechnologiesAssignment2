@@ -5,9 +5,12 @@ import '../customcards.css'
 const SummaryCountryEmissionData = ({ }) => {
 
     let params = useParams()
+    
 
     const [summaryData, setsummaryData] = useState({});
     const [countryId, setCountryId] = useState(params.countryId)
+    const [elementList, setElementList] = useState({})
+    const [elementId, setElementId] = useState(null)
 
     useEffect(() => {
         console.log("useEffect");
@@ -17,13 +20,62 @@ const SummaryCountryEmissionData = ({ }) => {
             .catch(err => {
                 console.log(err);
             })
-    }, [countryId])
+
+        fetch(`http://localhost:5256/api/B_Countries/GetElementList`)
+            .then(response => response.json())
+            .then(data => setElementList(data))
+            .catch(err => {
+                console.log(err);
+            });
+        
+
+    }, [countryId]);
+
+    /* for some reason when i put this code inside the fetch for the element list, it would
+     just repeatedly call the api over and over, putting a seperate useEffect seems to
+     have fixed it */
+    useEffect(() => {
+
+        if (elementList.length > 0) {
+            let dropdown = document.getElementById('element-dropdown');
+            let option;
+
+            for (let i = 0; i < elementList.length; i++) {
+                option = document.createElement('option');
+                option.text = elementList[i].elementName;
+                option.value = elementList[i].elementId;
+                dropdown.add(option);
+            }
+        }
+    }, [elementList])
+
+    useEffect(() => {
+        if (elementId != null) {
+            console.log("OMG A ELEMENT IDDD")
+        }
+        else (
+            console.log("we got no element id :(")
+        )
+    })
+
+    function getElement(event) {
+        
+        var elementValue = event.target.value;
+        console.log(elementValue);
+        setElementId(elementValue);
+        console.log(elementValue);
+
+        
+        
+    } 
+    
+
 
 
     return (
         <div>
 
-            <div class="text-white bg-gradient bg-success p-2 my-2 beorder rounded">
+            <div className="text-white bg-gradient bg-success p-2 my-2 beorder rounded">
                 <h2>Summary Country Emission Data </h2>
             </div>
             <hr /> 
@@ -31,17 +83,38 @@ const SummaryCountryEmissionData = ({ }) => {
             <hr /> 
 
             
+            {!summaryData?.length == 0 ? (
+                <div className="row justify-content-center" >
+                    <div className="table-responsive">
+                        <table className="table table-striped table-bordered">
+                            <thead className="table-dark">
+                                <tr>
+                                    <th>Year</th>
+                                    <th>Element</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {summaryData?.map((obj) => (
 
-            <div className="container mt-3">
-                <h5>Please select the year you would like to view country emission data</h5>
-            </div>
-            <div className="mt-4">
-                <select className="form-select" value={summaryData.year}>
-                    <option value="selectYear">Select Year</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                </select>
-            </div>
+                                    <tr>
+                                        <td>{obj.year != null ? obj.year : "N/A"}</td>
+                                        <td>{obj.element != null ? obj.element : "N/A"}</td>
+                                        <td>{obj.totalValue != null ? obj.totalValue : "N/A"}</td>                     
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            ) : (<h2>No data found</h2>)}
+
+            <hr />
+            <h2>Detailed Emissions Breakdown</h2>
+
+            <select id="element-dropdown" name="elements" onChange={getElement}>
+                <option>Select Element</option>
+            </select>
         </div>
     )
 }
