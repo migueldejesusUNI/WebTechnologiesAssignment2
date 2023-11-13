@@ -16,7 +16,7 @@ const CountryCard = ({ regionId, countryId, countryName, iso3, imageUrl, cityCou
                 <div className="btn-container">
                     {cityCount > 0 ? (<Link to={"/Cities/" + regionId + "/" + countryId} className="btn btn-primary mb-1">Visit Cities </ Link >) : ("")}
                     {temperatureDataYearRange[0] != 0 ? (< Link to={"/CountryTemperatureDetail/" + regionId + "/" + countryId} className="btn btn-primary mb-1">Temperature Data</Link>) : ("")}
-                    {emissionDataYearRange[0] != 0 ? (<Link to={"/SummaryCountryEmissionData/" + countryId} className="btn btn-primary mb-1">Summary Emission Data</Link>) : ("")}
+                    {emissionDataYearRange[0] != 0 ? (<Link to={"/SummaryCountryEmissionData/" + regionId + "/" + countryId} className="btn btn-primary mb-1">Summary Emission Data</Link>) : ("")}
                 </div>
             </div>
         </div>

@@ -21,7 +21,7 @@ root.render(
                 <Route path="Countries" element={<CountryCardList />} />
                 <Route path="Cities/:regionId/:countryId" element={<CityCardList />} />
                 <Route path="CountryTemperatureDetail/:regionId/:countryId" element={<CountryTemperatureDetail />} />
-                <Route path="SummaryCountryEmissionData/:countryId" element={<SummaryCountryEmissionData /> } /> 
+                <Route path="SummaryCountryEmissionData/:regionId/:countryId" element={<SummaryCountryEmissionData /> } /> 
                 <Route path="" element={<RegionCardList />} /> {/*route for when the url is localhost:[port] */}
                 <Route path="*" element={<RegionCardList />} /> {/*route that matches anything */ }
             </Routes>

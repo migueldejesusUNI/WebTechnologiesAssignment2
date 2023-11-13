@@ -39,7 +39,8 @@ h1, h2, h3, h4, h5, h6 {
     background-color: floralwhite
 }
 
-.select {
+select {
     display: block;
-    margin: 0 auto;
+    margin: auto;
+    text-align: center;
 }

@@ -8,7 +8,9 @@ const SummaryCountryEmissionData = ({ }) => {
     
 
     const [summaryData, setsummaryData] = useState({});
+    const [fullData, setfullData] = useState({});
     const [countryId, setCountryId] = useState(params.countryId)
+    const [regionId, setRegionId] = useState(params.regionId)
     const [elementList, setElementList] = useState({})
     const [elementId, setElementId] = useState(null)
     const initialisedAlready = useRef(false)
@@ -70,28 +72,35 @@ const SummaryCountryEmissionData = ({ }) => {
         )
     })
 
+    
+
+    useEffect(() => {
+        fetch(`http://localhost:5256/api/B_Countries/CountryEmissionData/${countryId}?elementId=${elementId}`)
+            .then(response => response.json())
+            .then(data => setfullData(data))
+            .catch(err => {
+                console.log(err)
+            })
+    }, [countryId, elementId])
+    
+    
     function getElement(event) {
         
         var elementValue = event.target.value;
         console.log(elementValue);
         setElementId(elementValue);
-        console.log(elementValue);
-
-        
-        
+        console.log(elementValue);        
     } 
-    
 
-
-
+    console.log(fullData)
     return (
         <div>
 
             <div className="text-white bg-gradient bg-success p-2 my-2 beorder rounded">
                 <h2>Summary Country Emission Data </h2>
             </div>
-            <hr /> 
-            <Link to={"/Countries/0"} className="btn btn-primary mb-1">Back to Country List</Link>
+            <hr />
+            <Link to={"/Countries/" + regionId} className="btn btn-primary mb-1">Back to Country List</Link>
             <hr /> 
 
             
@@ -124,9 +133,38 @@ const SummaryCountryEmissionData = ({ }) => {
             <hr />
             <h2>Detailed Emissions Breakdown</h2>
 
-            <select id="element-dropdown" name="elements" onChange={getElement}>
-                <option>Select Element</option>
-            </select>
+            <div>
+                <select id="element-dropdown" name="elements" onChange={getElement}>
+                    <option value="">Select Element</option>
+                </select>
+
+                {!fullData?.length == 0 ? (
+                    <div className="row justify-content-center" >
+                        <div className="table-responsive">
+                            <table className="table table-striped table-bordered">
+                                <thead className="table-dark">
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Item</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {fullData?.map((obj) => (
+
+                                        <tr>
+                                            <td>{obj.year != null ? obj.year : "N/A"}</td>
+                                            <td>{obj.itemName != null ? obj.itemName : "N/A"}</td>
+                                            <td>{obj.value != null ? obj.value : "N/A"}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    ) : (<h6>Please select an emission element</h6>)}
+            </div>
+            
         </div>
     )
 }
