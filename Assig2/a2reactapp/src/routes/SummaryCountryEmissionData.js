@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from "react-router-dom";
 import '../customcards.css'
 
@@ -11,9 +11,10 @@ const SummaryCountryEmissionData = ({ }) => {
     const [countryId, setCountryId] = useState(params.countryId)
     const [elementList, setElementList] = useState({})
     const [elementId, setElementId] = useState(null)
+    const initialisedAlready = useRef(false)
 
     useEffect(() => {
-        console.log("useEffect");
+        console.log("Summary Data");
         fetch(`http://localhost:5256/api/B_Countries/SummaryCountryEmissionData/${countryId}`)
             .then(response => response.json())
             .then(data => setsummaryData(data))
@@ -21,15 +22,26 @@ const SummaryCountryEmissionData = ({ }) => {
                 console.log(err);
             })
 
-        fetch(`http://localhost:5256/api/B_Countries/GetElementList`)
-            .then(response => response.json())
-            .then(data => setElementList(data))
-            .catch(err => {
-                console.log(err);
-            });
         
 
     }, [countryId]);
+
+    useEffect(() => {
+
+        /* strict mode called this twice making the select box have duplicate
+        entries so this was my way around strict mode rendering use effect twice ;)
+        */
+        if (!initialisedAlready.current) {
+            initialisedAlready.current = true
+            console.log("Element List ")
+            fetch(`http://localhost:5256/api/B_Countries/GetElementList`)
+                .then(response => response.json())
+                .then(data => setElementList(data))
+                .catch(err => {
+                    console.log(err);
+                });
+        }
+    }, [])
 
     /* for some reason when i put this code inside the fetch for the element list, it would
      just repeatedly call the api over and over, putting a seperate useEffect seems to
