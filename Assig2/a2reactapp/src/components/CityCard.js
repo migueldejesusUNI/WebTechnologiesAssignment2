@@ -5,8 +5,8 @@ const CityCard = ({ cityId, cityName, recordCount }) => {
         <div id="indexCards" className="card col-4 mb-2" key={cityId} style={{ width: 18 + 'rem' }}>
             <div className="card-body">
                 <h4 className="card-title">{cityName}</h4>
-                <h4 className="card-text">{recordCount > 0 ? `Number of records for ${cityName}: ${recordCount}` : "No air quality records available"}</h4>
-
+                <hr />
+                <h5 className="card-text">{recordCount > 0 ? `Air Quality records: ${recordCount}` : "No air quality records available"}</h5>
                 <Link to={"/AirQualityData/" + cityId} className="btn btn-primary mb-1">Air Quality Data</Link>
             </div>
         </div>
