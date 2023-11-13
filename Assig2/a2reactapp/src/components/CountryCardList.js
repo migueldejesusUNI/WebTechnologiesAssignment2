@@ -24,6 +24,7 @@ const CountryCardList = ({ }) => {
         setQuery(value);
     }
     
+    
     return (
         <div>
             <div className="text-white bg-gradient bg-success p-2 my-2 border rounded" >

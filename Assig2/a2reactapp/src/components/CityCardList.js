@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import CityCard from './CityCard';
 import { Link, useParams } from 'react-router-dom'
 
 const CityCardList = ({ }) => {
@@ -11,6 +10,7 @@ const CityCardList = ({ }) => {
     const [countryId, setCountryId] = useState(params.countryId);
     const [countryData, setcountryData] = useState({});
     const [query, setQuery] = useState('');
+
 
     useEffect(() => {
         console.log("useEffect")
@@ -33,7 +33,7 @@ const CityCardList = ({ }) => {
         const value = document.querySelector(['[name="searchText"]']).value;
         setQuery(value);
     }
-
+    
     return (
         <div className="row justify-content-center">
             <div className="text-white bg-gradient bg-success p-2 my-2 border rounded">
@@ -53,11 +53,15 @@ const CityCardList = ({ }) => {
             </div>
             <hr /> 
             {cardData?.map((obj) => (
-                <CityCard
-                    cityId={obj.cityId}
-                    cityName={obj.cityName}
-                    recordCount={obj.recordCount}
-                />
+                <div id="indexCards" className="card col-4 mb-2" key={obj.cityID} style={{ width: 18 + 'rem' }}>
+                    <div className="card-body">
+                        <h4 className="card-title">{obj.cityName}</h4>
+                        <hr />
+                        <h5 className="card-text">{obj.recordCount > 0 ? `Air Quality records: ${obj.recordCount}` : "No air quality records available"}</h5>
+                        <Link to={"/AirQualityData/" + regionId + "/" + countryId + "/" + obj.cityID} className="btn btn-primary mb-1">Air Quality Data</Link>
+
+                    </div>
+                </div>
             ))}
         </div>
     )

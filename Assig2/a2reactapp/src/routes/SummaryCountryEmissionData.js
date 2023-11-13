@@ -10,12 +10,15 @@ const SummaryCountryEmissionData = ({ }) => {
     const [summaryData, setsummaryData] = useState({});
     const [fullData, setfullData] = useState({});
     const [countryId, setCountryId] = useState(params.countryId)
+    const [countryInfo, setcountryInfo] = useState({})
     const [regionId, setRegionId] = useState(params.regionId)
     const [elementList, setElementList] = useState({})
     const [elementId, setElementId] = useState(null)
     const initialisedAlready = useRef(false)
 
     useEffect(() => {
+
+        /* obtains the summary data of country's emissions*/
         console.log("Summary Data");
         fetch(`http://localhost:5256/api/B_Countries/SummaryCountryEmissionData/${countryId}`)
             .then(response => response.json())
@@ -24,13 +27,20 @@ const SummaryCountryEmissionData = ({ }) => {
                 console.log(err);
             })
 
+        console.log("Country Info")
+        fetch(`http://localhost:5256/api/B_Countries/CountryList/${regionId}`)
+            .then(response => response.json())
+            .then(data => setcountryInfo(data))
+            .catch(err => {
+                console.log(err)
+            })
         
 
-    }, [countryId]);
+    }, [countryId, regionId]);
 
     useEffect(() => {
 
-        /* strict mode called this twice making the select box have duplicate
+        /* Gets the element list - strict mode called this twice making the select box have duplicate
         entries so this was my way around strict mode rendering use effect twice ;)
         */
         if (!initialisedAlready.current) {
@@ -45,7 +55,7 @@ const SummaryCountryEmissionData = ({ }) => {
         }
     }, [])
 
-    /* for some reason when i put this code inside the fetch for the element list, it would
+    /* Automatically populates the dropdown select with the elements - for some reason when i put this code inside the fetch for the element list, it would
      just repeatedly call the api over and over, putting a seperate useEffect seems to
      have fixed it */
     useEffect(() => {
@@ -65,7 +75,7 @@ const SummaryCountryEmissionData = ({ }) => {
 
     useEffect(() => {
         if (elementId != null) {
-            console.log("OMG A ELEMENT IDDD")
+            console.log("WOW THERE IS AN ELEMENT ID!")
         }
         else (
             console.log("we got no element id :(")
@@ -75,6 +85,7 @@ const SummaryCountryEmissionData = ({ }) => {
     
 
     useEffect(() => {
+        /* obtains the breakdown of each country's emissions*/
         fetch(`http://localhost:5256/api/B_Countries/CountryEmissionData/${countryId}?elementId=${elementId}`)
             .then(response => response.json())
             .then(data => setfullData(data))
@@ -103,7 +114,13 @@ const SummaryCountryEmissionData = ({ }) => {
             <Link to={"/Countries/" + regionId} className="btn btn-primary mb-1">Back to Country List</Link>
             <hr /> 
 
-            
+            <div className="card col-6 mb-2 mx-auto" >
+                <img className="card-img-top" src={countryInfo.countryList?.find(c => c.countryId == countryId).imageUrl} />
+                <div className="card-body text-white bg-gradient bg-primary p-2 my-2 border rounded">
+                    <h2>{countryInfo.countryList?.find(c => c.countryId == countryId).countryName}</h2>
+                    <h3>{countryInfo.theRegion?.regionName}</h3>
+                </div>
+            </div>
             {!summaryData?.length == 0 ? (
                 <div className="row justify-content-center" >
                     <div className="table-responsive">
@@ -131,7 +148,9 @@ const SummaryCountryEmissionData = ({ }) => {
             ) : (<h2>No data found</h2>)}
 
             <hr />
-            <h2>Detailed Emissions Breakdown</h2>
+            <div className="text-white bg-gradient bg-success p-2 my-2 border rounded">
+                <h2>Detailed Emissions Breakdown</h2>
+            </div>
 
             <div>
                 <select id="element-dropdown" name="elements" onChange={getElement}>
