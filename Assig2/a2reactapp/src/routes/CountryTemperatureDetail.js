@@ -80,7 +80,7 @@ const CountryTemperatureDetail = ({ }) => {
                             
                                 <tr>
                                     <td>{obj.theCountryTempData.year != null ? obj.theCountryTempData.year : "N/A"}</td>
-                                    <td>{obj.theCountryTempData.unit != null ? obj.theCountryTempData.unit : "N/A"}</td>
+                                   <td>{obj.theCountryTempData.unit != null ? obj.theCountryTempData.unit : "N/A"}</td>
                                     <td>{obj.theCountryTempData.change != null ? obj.theCountryTempData.change : "N/A"}</td>
                                     <td>{obj.theCountryTempData.value != null ? obj.theCountryTempData.value : "N/A"}</td>
                                     <td>{obj.regionalAvg != null ? obj.regionalAvg : "N/A"}</td>
